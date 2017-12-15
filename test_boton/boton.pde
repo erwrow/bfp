@@ -1,25 +1,45 @@
+boolean boton(int x, int y, String leyenda)
+{
+  return botonFinal(x, y, leyenda, height / 18, false);
+}
 boolean boton(int x, int y, String leyenda, int tam_text_or)
 {
-  float tam_caja = abecedario(leyenda, 15) + 2;
+  return botonFinal(x, y, leyenda, tam_text_or, false);
+}
+boolean boton(int x, int y, String leyenda, int tam_text_or, boolean centrado)
+{
+  return botonFinal(x, y, leyenda, tam_text_or, centrado);
+}
+boolean botonFinal(int x, int y, String leyenda, int tam_text_or, boolean centrado)
+{
+  float tam_caja = abecedario(leyenda, 15);
+  //float tam_caja = textWidth(leyenda);
+  //println(abecedario(leyenda, 15) + " - " + textWidth(leyenda) + " - " + ((textWidth(leyenda) / 2) + 3));
+  configuracionInicial();
+  if(centrado)
+  {
+    textAlign(CENTER, CENTER);
+    rectMode(CENTER);
+  }
   textSize(15);
   fill(100);
-  strokeWeight(2);
-  rect(x - 1, y - 1, tam_caja + 6, 24, 5);
+  //strokeWeight(2);
+  rect(x - (centrado?0:1), y - (centrado?0:1), tam_caja + 6, 24, 5);
   strokeWeight(1);
   fill(200);
-  rect(x + 2, y + 2, tam_caja, 18, 3);
+  rect(x + (centrado?0:2), y + (centrado?0:2), tam_caja, 18, 3);
   fill(0);
-  text(leyenda, x + 4, y + 16);
-  if((mouseX > x) && (mouseX < (x + tam_caja + 4)) && (mouseY > y) && (mouseY < (y + 20)))
+  text(leyenda, x + (centrado?0:4), y + (centrado?0:16));
+  if((mouseX > (x - (tam_caja / (centrado?2:tam_caja)) - (centrado?4:0))) && (mouseX < (x + (tam_caja / (centrado?2:1)) + 4)) && (mouseY > (y - (centrado?12:0))) && (mouseY < (y + (centrado?12:20))))
   {
     fill(200);
-    strokeWeight(2);
-    rect(x - 1, y - 1, tam_caja + 6, 24, 5);
+    //strokeWeight(2);
+    rect(x - (centrado?0:1), y - (centrado?0:1), tam_caja + 6, 24, 5);
     strokeWeight(1);
     fill(100);
-    rect(x + 2, y + 2, tam_caja, 18, 3);
+    rect(x + (centrado?0:2), y + (centrado?0:2), tam_caja, 18, 3);
     fill(255);
-    text(leyenda, x + 4, y + 16);
+    text(leyenda, x + (centrado?0:4), y + (centrado?0:16));
     if(mousePressed)
     {
       textSize(tam_text_or);
