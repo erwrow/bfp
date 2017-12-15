@@ -1,6 +1,6 @@
 boolean boton(int x, int y, String leyenda)
 {
-  return botonFinal(x, y, leyenda, height / 18, false);
+  return botonFinal(x, y, leyenda, height / 18, false);  //Change "height / 18" to the text size that you want
 }
 boolean boton(int x, int y, String leyenda, int tam_text_or)
 {
